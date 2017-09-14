@@ -6,15 +6,54 @@ public class EventQuest : MonoBehaviour {
 	public GameObject questLabel;
 	public GameObject goal;
 	public bool openedQLabel = false;
-	private bool flg = false;
+	protected GameObject obj;
+	private EntityAIUnityChan uniCs;
 	
 	void Start () {
 		this.questLabel.SetActive(false);
 		this.goal.SetActive(false);
 	}
 
-	void OnTriggerStay(Collider collider){
-		GameObject obj = collider.gameObject;
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.O) && this.uniCs){
+
+			if(this.uniCs.getKeys() >= 3){
+				this.uniCs.isFreezing = true;
+				this.goal.SetActive(true);
+
+			}else{
+				
+				if(this.openedQLabel){
+					this.questLabel.SetActive(false);
+					this.uniCs.isFreezing = false;
+					this.openedQLabel = false;
+
+				}else{
+					this.questLabel.SetActive(true);
+					this.uniCs.isFreezing = true;
+					this.openedQLabel = true;
+				}
+			}
+		}
+	}
+
+	void OnTriggerExit(Collider collider){
+		this.obj = collider.gameObject;
+		if(this.obj.tag != "Player")
+			return;
+			
+		this.uniCs = null;
+		this.questLabel.SetActive(false);
+		this.openedQLabel = false;
+
+	}
+
+	void OnTriggerEnter(Collider collider){
+		this.obj = collider.gameObject;
+		if(this.obj.tag == "Player"){
+			this.uniCs = this.obj.GetComponent<EntityAIUnityChan>();
+		}
+		/*
 		if(obj.tag == "Player"){
 			if(Input.GetKeyDown(KeyCode.O) && !this.flg){
 				this.flg = !this.flg;
@@ -41,5 +80,6 @@ public class EventQuest : MonoBehaviour {
 				this.flg = !flg;
 			}
 		}
+		//*/
 	}
 }

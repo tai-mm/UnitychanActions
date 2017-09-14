@@ -2,6 +2,12 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// -Unityちゃんの動き(移動・ジャンプ・アニメーション)
+/// -Unityちゃんの装備に関すること
+/// -UIに関すること
+/// -バグ修正機能
+/// </summary>
 public class EntityAIUnityChan : MonoBehaviour {
 	public Animator animator;
 	public Rigidbody rigidBody;
@@ -62,7 +68,7 @@ public class EntityAIUnityChan : MonoBehaviour {
 			//HPが0ならゲームオーバー、それ以外ならMovesを実行
 			if(this.getHealth() <= 0.0F){
 				StartCoroutine(setDead());
-
+				
 			}else{
 				this.moves();
 				this.jump();
@@ -178,9 +184,10 @@ public class EntityAIUnityChan : MonoBehaviour {
 		}
 	}
 
-	/*レイを飛ばす
-		落下ダメージ関連はここで制御
-	*/
+	/// <summary>
+	/// レイを飛ばす
+	///	落下ダメージ関連はここで制御
+	/// </summary>
 	public void raysActivity(){
 		float maxDistance = 0.25F;
 		/*Debug.DrawRay(transform.position + new Vector3(0F, 0.08F, 0F), 
@@ -389,11 +396,3 @@ public class EntityAIUnityChan : MonoBehaviour {
 		}
 	}
 }
-
-/*
-"EntityAIUnityChan"
--Unityちゃんの動き(移動・ジャンプ・アニメーション)
--Unityちゃんの装備に関すること
--UIに関すること
--バグ修正機能
-*/
