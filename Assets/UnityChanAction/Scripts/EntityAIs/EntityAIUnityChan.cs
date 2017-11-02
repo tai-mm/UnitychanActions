@@ -31,6 +31,7 @@ public class EntityAIUnityChan : MonoBehaviour {
 	protected float moveSpeed = 12.0F;
 	protected float strongLeg = 3.0F;
 	//protected byte[] entityEffects = new byte[];
+	private Plane plane = new Plane();
 	private AnimatorStateInfo stateInfo;
 	private Vector3 startPoint;
 	private bool canJump = false;
@@ -110,6 +111,19 @@ public class EntityAIUnityChan : MonoBehaviour {
 
 	//Unityちゃんの動き
 	private void moves(){
+		float distance = 0;
+		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		plane.SetNormalAndPosition (Vector3.up, transform.localPosition);
+		if (plane.Raycast (ray, out distance)) {
+
+			// 距離を元に交点を算出して、交点の方を向く
+			var lookPoint = ray.GetPoint(distance);
+
+			if(this.onGround){
+				transform.LookAt (lookPoint);
+			}
+		}
 
 		if(rigidBody.velocity.magnitude < 4.0F){
 			//前進
@@ -126,32 +140,6 @@ public class EntityAIUnityChan : MonoBehaviour {
 				animator.SetBool("Dash", false);
 				animator.SetBool("Stay", true);
 				rigidBody.AddForce(transform.forward * 0.0F);
-			}
-
-			//反対方向を向く
-			if(Input.GetKeyDown(KeyCode.S)){
-				float angle = transform.eulerAngles.y;
-
-				if(angle > 120.0F && angle < 240.0F){
-					transform.eulerAngles = 
-					new Vector3(0F, 0.0F, 0F);
-				}else{
-					transform.eulerAngles = 
-					new Vector3(0F, 180.0F, 0F);
-				}
-			}
-
-			//右へ旋回
-			if(Input.GetKeyDown(KeyCode.A)){
-				transform.eulerAngles += 
-					new Vector3(0F, -90.0F, 0F);
-			}
-
-			//左へ旋回
-			if(Input.GetKeyDown(KeyCode.D)){
-					
-				transform.eulerAngles += 
-					new Vector3(0F, 90.0F, 0F);
 			}
 		}
 	}
@@ -176,9 +164,9 @@ public class EntityAIUnityChan : MonoBehaviour {
 		}
 
 		//ジャンプ開始
-		if(this.jumpLagtime > 10){
+		if(this.jumpLagtime > 7){
 			GetComponent<Rigidbody>().velocity = 
-				Vector3.up * 8.0F;
+				Vector3.up * 9.0F;
 			this.canJump = false;
 			this.isJump = true;
 		}
@@ -201,7 +189,7 @@ public class EntityAIUnityChan : MonoBehaviour {
 				//print(this.fallDistance);
 				
 				if(this.fallDistance > 2.0F){
-					this.receiveAttack(this.fallDistance - 8.0F);
+					//this.receiveAttack(this.fallDistance - 8.0F);
 					animator.CrossFade("Jump", 0, 0, 0.7f);
 				}
 				GameObject footParticle = GameObject.Instantiate
@@ -280,8 +268,6 @@ public class EntityAIUnityChan : MonoBehaviour {
 	void OnCollisionStay(Collision collision){
 		if(collision.gameObject.tag == "Ground"){
 			this.onGround = true;
-		}else{
-			this.onGround = false;
 		}
 	}
 

@@ -38,7 +38,8 @@ public class MoveGround : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision){
 		GameObject obj = collision.gameObject;
-		obj.transform.parent = this.transform;
+		obj.transform.SetParent(this.transform, true);
+		// obj.transform.parent = this.transform;
 	}
 
 	void OnCollisionExit(Collision collision){
