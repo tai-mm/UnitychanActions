@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventSoftDeadblock : MonoBehaviour {
-	public GameObject startPoint;
 	public int damageWhenCol = 3;
 
 	void OnCollisionEnter(Collision collision){
 		if(collision.gameObject.tag == "Player"){
 			collision.gameObject.SendMessage
-				("receiveAttack", this.damageWhenCol);
+				("attackedBy", this.damageWhenCol);
+			var uniCs = collision.gameObject.
+				GetComponent<EntityAIUnityChan>();
 
-			collision.gameObject.transform.position = 
-				startPoint.transform.position;
+			if(uniCs != null && uniCs.getHealth() <= 0.0F){
+				collision.gameObject.SendMessage("setDead");
+			}else{
+				collision.gameObject.transform.position = 
+				uniCs.startPoint;
+			}
 		}
 	}
 }
