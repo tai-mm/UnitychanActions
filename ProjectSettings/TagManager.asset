@@ -12,6 +12,7 @@ TagManager:
   - Attackness
   - DirtyGround
   - OutOfTheWorld
+  - Stage
   layers:
   - Default
   - TransparentFX
