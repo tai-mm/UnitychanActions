@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventSelectStage : MonoBehaviour {
+	public string stageName;
 	public GameObject northside;
 	public GameObject southside;
 	public GameObject eastside;
