@@ -8,51 +8,56 @@ public class WorldMapPlayer : MonoBehaviour {
 	public Animator animator;
 	public Rigidbody rigidBody;
 	public GameObject canvas;
+	public GameObject currentObj;
 	public float howLongToArrive;
 	public bool readyToMove = true;
 	public bool isFreezing = false;
 
+	GameObject eastStage;
+	GameObject westStage;
+	//GameObject northStage;
+	//GameObject southStage;
+
+	void Start () {
+		eastStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.east];
+		westStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.west];
+	}
+
 	void Update () {
 		if(this.readyToMove){
 			this.animator.SetBool("Move", false);
-		}
-	}
-
-	void OnTriggerStay(Collider collider){
-		GameObject colObj = collider.gameObject;
-		if(colObj.tag == "Stage" && !this.isFreezing){
-			var eastStage = colObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.east];
-			var westStage = colObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.west];
 
 			//ステージ間移動
-			if(this.readyToMove){
-				if(Input.GetKey(KeyCode.RightArrow) && eastStage){
-					this.action(eastStage.transform.position, Ease.Flash);
-				}
-
-				if(Input.GetKey(KeyCode.LeftArrow) && westStage){
-					this.action(westStage.transform.position, Ease.Flash);
-				}
+			if(Input.GetKey(KeyCode.RightArrow) && eastStage){
+				this.currentObj = eastStage;
+				this.action(eastStage.transform.position, Ease.InFlash);
+			}
+			if(Input.GetKey(KeyCode.LeftArrow) && westStage){
+				this.currentObj = westStage;
+				this.action(westStage.transform.position, Ease.InFlash);
 			}
 
 			//ステージ決定
 			if(Input.GetKey(KeyCode.Space)){
-				string nameSpace = colObj.GetComponent<EventSelectStage>().stageName;
+				string nameSpace = currentObj.GetComponent<EventSelectStage>().stageName;
 				if(nameSpace != ""){
-					StartCoroutine(this.canvasAccess(nameSpace));
-				}
-			}
+ 					StartCoroutine(this.canvasAccess(nameSpace));
+  				}
+	  		}
 		}
 	}
 
 	public void action(Vector3 coord, Ease easeType){
 		this.readyToMove = false;
-		transform.DOMove(coord, this.howLongToArrive * Time.deltaTime)
-			.SetEase(easeType).OnComplete(() => this.readyToMove = true);
+		transform.DOMove(coord, this.howLongToArrive)
+			/*.SetEase(easeType)*/.OnComplete(() => this.readyToMove = true);
 		transform.LookAt(coord);
 		this.animator.SetBool("Move", true);
+		eastStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.east];
+		westStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.west];
 	}
 
+	//選んだステージのシーンへ移動する時は、キャンバスのイベントを経由して処理が実行される。
 	protected IEnumerator canvasAccess(string nameSpace){
 		this.isFreezing = true;
 		transform.eulerAngles = Vector3.zero;

@@ -12,7 +12,7 @@ public class EventSelectStage : MonoBehaviour {
 	public Dictionary<EnumStagePos.direction, GameObject> stageObjs 
 		= new Dictionary<EnumStagePos.direction, GameObject>();
 
-	void Start () {
+	void Awake () {
 		//"stageObjs"の中に、指定されたステージオブジェクトを入れる
 		this.stageObjs.Add(EnumStagePos.direction.north, northside);
 		this.stageObjs.Add(EnumStagePos.direction.south, southside);
