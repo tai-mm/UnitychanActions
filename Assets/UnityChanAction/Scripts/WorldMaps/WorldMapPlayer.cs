@@ -19,8 +19,8 @@ public class WorldMapPlayer : MonoBehaviour {
 	//GameObject southStage;
 
 	void Start () {
-		eastStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.east];
-		westStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.west];
+		eastStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[Const.EnumDirection.East];
+		westStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[Const.EnumDirection.West];
 	}
 
 	void Update () {
@@ -53,8 +53,8 @@ public class WorldMapPlayer : MonoBehaviour {
 			/*.SetEase(easeType)*/.OnComplete(() => this.readyToMove = true);
 		transform.LookAt(coord);
 		this.animator.SetBool("Move", true);
-		eastStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.east];
-		westStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[EnumStagePos.direction.west];
+		eastStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[Const.EnumDirection.East];
+		westStage = this.currentObj.GetComponent<EventSelectStage>().stageObjs[Const.EnumDirection.West];
 	}
 
 	//選んだステージのシーンへ移動する時は、キャンバスのイベントを経由して処理が実行される。

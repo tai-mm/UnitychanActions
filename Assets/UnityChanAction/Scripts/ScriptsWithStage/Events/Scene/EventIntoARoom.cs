@@ -11,7 +11,7 @@ public class EventIntoARoom : MonoBehaviour {
 	}
 
 	public void changeFor(int typeOf){
-		var uchanCs = unityChan.GetComponent<EntityAIUnityChan>();
+		var uchanCs = unityChan.GetComponent<EntityAIUnityChanMoves>();
 		
 		switch(typeOf){
 			//1-8　部屋に入る時

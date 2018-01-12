@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class RetryViewController : MonoBehaviour {
 
 	public void SceneLoad () {
-		Application.LoadLevel("UnityChanTitle");
+		//Application.LoadLevel("TitleView");
+		SceneManager.LoadScene("TitleView");
 	}
 }

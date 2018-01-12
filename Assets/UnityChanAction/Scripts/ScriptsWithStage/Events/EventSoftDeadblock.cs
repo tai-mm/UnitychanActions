@@ -10,7 +10,7 @@ public class EventSoftDeadblock : MonoBehaviour {
 			collision.gameObject.SendMessage
 				("attackedBy", this.damageWhenCol);
 			var uniCs = collision.gameObject.
-				GetComponent<EntityAIUnityChan>();
+				GetComponent<EntityAIUnityChanMoves>();
 
 			if(uniCs != null && uniCs.getHealth() <= 0.0F){
 				collision.gameObject.SendMessage("setDead");

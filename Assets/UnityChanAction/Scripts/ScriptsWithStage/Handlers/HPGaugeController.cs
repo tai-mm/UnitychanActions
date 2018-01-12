@@ -2,13 +2,12 @@
 using System.Collections;
 
 public class HPGaugeController : MonoBehaviour {
-	private GameObject unityChan;
-	private EntityAIUnityChan uniScript;
+	public GameObject unityChan;
+	private EntityAIUnityChanMoves uniScript;
 	private int flashing;
 
 	void Start () {
-		this.unityChan = GameObject.Find("unitychan");
-		this.uniScript = this.unityChan.GetComponent<EntityAIUnityChan> ();
+		this.uniScript = this.unityChan.GetComponent<EntityAIUnityChanMoves> ();
 		this.flashing = 0;
 	}
 	

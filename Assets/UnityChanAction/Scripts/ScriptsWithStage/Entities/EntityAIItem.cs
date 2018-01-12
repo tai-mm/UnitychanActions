@@ -5,7 +5,7 @@ using UnityEngine;
 public class EntityAIItem : MonoBehaviour {
 	public string itemType;
 	public bool isRoolling;
-	private EntityAIUnityChan uniScript;
+	private EntityAIUnityChanMoves uniScript;
 	private int time;
 	private float moveSpeed = 0.5F;
 	private bool isReturn;

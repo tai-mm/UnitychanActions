@@ -3,16 +3,12 @@ using System.Collections;
 
 public class PauseHandler : MonoBehaviour {
 	public Animator animator;
+	public GameObject pauseMenu;
 	public bool deleteContents;
-	private GameObject pauseMenu;
 
 	void Awake (){
-		this.pauseMenu = GameObject.Find("TextUICanvas").
-			transform.Find("Scenes").
-			transform.Find("PauseView").gameObject;
 		this.pauseMenu.SetActive(false);
-		this.animator = 
-			this.pauseMenu.GetComponent<Animator>();
+		this.animator = this.pauseMenu.GetComponent<Animator>();
 		this.deleteContents = true;
 	}
 	
@@ -23,9 +19,6 @@ public class PauseHandler : MonoBehaviour {
 
 				if(Time.timeScale == 1){
 					StartCoroutine(setView());
-
-				}else{
-					this.deleteView();
 				}
 			}
 		}
@@ -39,7 +32,10 @@ public class PauseHandler : MonoBehaviour {
 		Time.timeScale = 0;
 	}
 
-	private void deleteView(){
+	public IEnumerator deleteView(){
+		this.animator.speed = -1;
+		yield return new WaitForSeconds(0.5F);
+
 		this.pauseMenu.SetActive(false);
 		Time.timeScale = 1;
 	}

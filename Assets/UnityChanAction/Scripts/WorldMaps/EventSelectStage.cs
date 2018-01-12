@@ -9,14 +9,14 @@ public class EventSelectStage : MonoBehaviour {
 	public GameObject eastside;
 	public GameObject westside;
 	//方角とステージを関連付け
-	public Dictionary<EnumStagePos.direction, GameObject> stageObjs 
-		= new Dictionary<EnumStagePos.direction, GameObject>();
+	public Dictionary<Const.EnumDirection, GameObject> stageObjs 
+		= new Dictionary<Const.EnumDirection, GameObject>();
 
 	void Awake () {
 		//"stageObjs"の中に、指定されたステージオブジェクトを入れる
-		this.stageObjs.Add(EnumStagePos.direction.north, northside);
-		this.stageObjs.Add(EnumStagePos.direction.south, southside);
-		this.stageObjs.Add(EnumStagePos.direction.east, eastside);
-		this.stageObjs.Add(EnumStagePos.direction.west, westside);
+		this.stageObjs.Add(Const.EnumDirection.North, northside);
+		this.stageObjs.Add(Const.EnumDirection.South, southside);
+		this.stageObjs.Add(Const.EnumDirection.East, eastside);
+		this.stageObjs.Add(Const.EnumDirection.West, westside);
 	}
 }

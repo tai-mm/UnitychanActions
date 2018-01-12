@@ -3,11 +3,11 @@ using System.Collections;
 
 public class EntityAIBombThrower : MonoBehaviour {
 	public GameObject prefab_bomb;
-	private EntityAIUnityChan uniScript;
+	private EntityAIUnityChanMoves uniScript;
 	private int interval = 0;
 
 	void Awake (){
-		this.uniScript = GetComponent<EntityAIUnityChan> ();
+		this.uniScript = GetComponent<EntityAIUnityChanMoves> ();
 	}
 	
 	void Update () {

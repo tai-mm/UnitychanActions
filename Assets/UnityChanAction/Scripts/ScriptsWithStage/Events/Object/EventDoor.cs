@@ -6,11 +6,11 @@ public class EventDoor : MonoBehaviour {
 	public GameObject scene;
 	protected bool playerInNear;
 	private Vector3 playerPos;
-	private EntityAIUnityChan uniCs;
+	private EntityAIUnityChanMoves uniCs;
 
 	void Start () {
 		this.playerInNear = false;
-		this.uniCs = this.unityChan.GetComponent<EntityAIUnityChan>();
+		this.uniCs = this.unityChan.GetComponent<EntityAIUnityChanMoves>();
 	}
 
 	void Update () {

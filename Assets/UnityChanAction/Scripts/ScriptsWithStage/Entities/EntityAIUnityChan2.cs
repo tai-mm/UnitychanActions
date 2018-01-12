@@ -3,12 +3,12 @@ using System.Collections;
 
 public class EntityAIUnityChan2 : MonoBehaviour {
 	public RaycastHit hit;
-	public EntityAIUnityChan uniSc1;
+	public EntityAIUnityChanMoves uniSc1;
 	public GameObject camera;
 	private bool cameraStopper = false;
 
 	void Start () {
-		uniSc1 = this.GetComponent<EntityAIUnityChan>();
+		uniSc1 = this.GetComponent<EntityAIUnityChanMoves>();
 	}
 	
 	void Update () {

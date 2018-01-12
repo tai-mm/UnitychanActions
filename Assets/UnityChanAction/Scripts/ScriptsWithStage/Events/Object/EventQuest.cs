@@ -7,7 +7,7 @@ public class EventQuest : MonoBehaviour {
 	public GameObject goal;
 	public bool openedQLabel = false;
 	protected GameObject obj;
-	private EntityAIUnityChan uniCs;
+	private EntityAIUnityChanMoves uniCs;
 	
 	void Start () {
 		this.questLabel.SetActive(false);
@@ -51,7 +51,7 @@ public class EventQuest : MonoBehaviour {
 	void OnTriggerEnter(Collider collider){
 		this.obj = collider.gameObject;
 		if(this.obj.tag == "Player"){
-			this.uniCs = this.obj.GetComponent<EntityAIUnityChan>();
+			this.uniCs = this.obj.GetComponent<EntityAIUnityChanMoves>();
 		}
 		/*
 		if(obj.tag == "Player"){

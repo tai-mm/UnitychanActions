@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// -UIに関すること
 /// -バグ修正機能
 /// </summary>
-public class EntityAIUnityChan : MonoBehaviour {
+public class EntityAIUnityChanMoves : MonoBehaviour {
 	public Animator animator;
 	public Rigidbody rigidBody;
 	public Text hpLabel;
@@ -48,7 +48,7 @@ public class EntityAIUnityChan : MonoBehaviour {
 	//ゲーム起動時
 	void Awake (){
 		rigidBody = GetComponent<Rigidbody>();
-		this.playerSay.SetActive(false);
+		//this.playerSay.SetActive(false);
 		this.stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 		this.startPoint = this.transform.position;
 	}
@@ -300,15 +300,15 @@ public class EntityAIUnityChan : MonoBehaviour {
 
 	//Unityちゃんの頭上に出てくるエフェクト
 	public void playerSaying(string pit){
-		this.playerSay.SetActive(true);
-		var textComp = this.playerSay.GetComponent<TextMesh>();
-		textComp.text = pit;
+		//this.playerSay.SetActive(true);
+		//var textComp = this.playerSay.GetComponent<TextMesh>();
+		//textComp.text = pit;
 	}
 
 	//アイテムのアイコンを表示させる
 	public void itemIconScened(string type){
    		switch(type){
-   			case "EssencialKey":   			
+   			case "EssencialKey":
    			/*this.itemIcons[0].GetComponent<CanvasRenderer>()
    				.SetAlpha(1);*/
    			this.itemIcons[0].SetActive(true);

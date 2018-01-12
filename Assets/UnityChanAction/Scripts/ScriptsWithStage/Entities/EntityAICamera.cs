@@ -118,8 +118,8 @@ public class EntityAICamera : MonoBehaviour {
 	}
 
 	private void freezePlayer(bool not){
-		EntityAIUnityChan cs = this.unityChan.
-			GetComponent<EntityAIUnityChan>();
+		EntityAIUnityChanMoves cs = this.unityChan.
+			GetComponent<EntityAIUnityChanMoves>();
 
 		if(cs != null){
 			cs.isFreezing = not;

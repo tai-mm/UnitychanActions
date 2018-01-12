@@ -2,13 +2,12 @@
 using System.Collections;
 
 public class EventCameraShake : MonoBehaviour {
-	private GameObject unityChan;
-	private EntityAIUnityChan uniScript;
+	public GameObject unityChan;
+	private EntityAIUnityChanMoves uniScript;
 	private int shakingTime = 0;
 
 	void Start (){
-		this.unityChan = GameObject.Find("unitychan");
-		this.uniScript = this.unityChan.GetComponent<EntityAIUnityChan> ();
+		this.uniScript = this.unityChan.GetComponent<EntityAIUnityChanMoves> ();
 	}
 
 	void Update (){

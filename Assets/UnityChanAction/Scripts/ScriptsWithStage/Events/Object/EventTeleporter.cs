@@ -27,7 +27,7 @@ public class EventTeleporter : MonoBehaviour {
 					.changeCamera(false);
 			}
 
-			var uniCs = player.GetComponent<EntityAIUnityChan>();
+			var uniCs = player.GetComponent<EntityAIUnityChanMoves>();
 			if(uniCs != null){
 				uniCs.isIn = this.intoAHere;
 			}
