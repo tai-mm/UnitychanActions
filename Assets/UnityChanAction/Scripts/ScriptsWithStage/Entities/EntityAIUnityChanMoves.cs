@@ -16,7 +16,6 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 	public RaycastHit hit;
 	public Vector3 startPoint;
 	public GameObject[] itemIcons = new GameObject[3];
-	public GameObject playerSay;
 	public GameObject keyText;
 	public GameObject prefab_footPR;
 	public string isIn = "Outside";
@@ -48,7 +47,6 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 	//ゲーム起動時
 	void Awake (){
 		rigidBody = GetComponent<Rigidbody>();
-		//this.playerSay.SetActive(false);
 		this.stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 		this.startPoint = this.transform.position;
 	}
@@ -175,10 +173,7 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 		}
 	}
 
-	/// <summary>
-	/// レイを飛ばす
-	///	落下ダメージ関連はここで制御
-	/// </summary>
+	//ジャンプに関するレイ
 	public void raysActivity(){
 		float maxDistance = 0.25F;
 		/*Debug.DrawRay(transform.position + new Vector3(0F, 0.08F, 0F), 
@@ -189,7 +184,6 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 
 			if(this.startFall){
 				this.fallDistance = fallPos - transform.position.y;
-				//print(this.fallDistance);
 				
 				if(this.fallDistance > 2.0F){
 					//this.receiveAttack(this.fallDistance - 8.0F);
@@ -225,21 +219,6 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 		}
 	}
 
-	//チートコマンドの管理
-	private void moveCheats(){
-		if(this.canUseAllowCheats){
-			if(Input.GetKeyUp(KeyCode.I) && !this.isInvisiblity){
-				this.isInvisiblity = true;
-				Debug.Log("UnityChan have been minder");
-			}
-		}
-
-		//スタート地点に戻る
-		if(Input.GetKeyDown(KeyCode.R)){
-			transform.position = this.startPoint;
-		}
-	}
-
 	/*オブジェクトにぶつかったとき（コライダー）
 		ジャンプシステムの制御
 	*/
@@ -264,7 +243,6 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 			this.setEquipment(collision.gameObject.
 				GetComponent<EntityAIItem> ().getItemType());
 			Destroy(collision.gameObject);
-			this.playerSaying("+1");
 		}
 	}
 
@@ -296,13 +274,6 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 			default:
 			break;
 		}
-	}
-
-	//Unityちゃんの頭上に出てくるエフェクト
-	public void playerSaying(string pit){
-		//this.playerSay.SetActive(true);
-		//var textComp = this.playerSay.GetComponent<TextMesh>();
-		//textComp.text = pit;
 	}
 
 	//アイテムのアイコンを表示させる
@@ -382,12 +353,27 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 		Application.LoadLevel("GameOver");
 	}
 
+	//チートコマンドの管理
+	private void moveCheats(){
+		if(this.canUseAllowCheats){
+			if(Input.GetKeyUp(KeyCode.I) && !this.isInvisiblity){
+				this.isInvisiblity = true;
+				Debug.Log("UnityChan has became minder");
+			}
+		}
+
+		//スタート地点に戻る
+		if(Input.GetKeyDown(KeyCode.R)){
+			transform.position = this.startPoint;
+		}
+	}
+
 	//バグの管理
 	private void bugStaff(string situation){
 		switch(situation){
 
 			default:
-				Debug.Log("What is some errors you've saw?");
+				Debug.Log("What's a error you've saw?");
 			break;
 		}
 	}

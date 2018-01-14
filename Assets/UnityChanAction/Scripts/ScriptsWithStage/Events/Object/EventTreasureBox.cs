@@ -8,11 +8,12 @@ public class EventTreasureBox : MonoBehaviour {
 	public GameObject particle;
 	protected bool playerInNear;
 	private Vector3 playerPos;
+	private Vector3 boxPos;
 	private bool isOpened;
 
 	void Start () {
-		this.contentItem.SetActive(false);
 		this.playerInNear = false;
+		this.boxPos = transform.position;
 		this.isOpened = false;
 	}
 	
@@ -57,12 +58,15 @@ public class EventTreasureBox : MonoBehaviour {
 
 	IEnumerator spawnItem(){
 		yield return new WaitForSeconds(0.8F);
-		//アイテムをアクティブに
-		this.contentItem.SetActive(true);
+
+		var spawness = GameObject.Instantiate(this.contentItem, 
+			new Vector3(12.0f, this.boxPos.y + 1.0f, 1.0f), transform.rotation) as GameObject;
+		spawness.GetComponent<EventReleaseItem>().treasureBox = this.gameObject;
+		spawness.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+		spawness.transform.SetParent(this.transform, true);
 
 		//パーティクルのサイズを0に
-		ParticleSystem system = 
-			this.particle.GetComponent<ParticleSystem>();
+		ParticleSystem system = this.particle.GetComponent<ParticleSystem>();
 		system.startSize = 0;
 
 		//アイテムが飛び出たら、パーティクルを消去

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EntityAIUnityChan2 : MonoBehaviour {
+public class EntityAIUnityChanRays : MonoBehaviour {
 	public RaycastHit hit;
 	public EntityAIUnityChanMoves uniSc1;
 	public GameObject camera;
