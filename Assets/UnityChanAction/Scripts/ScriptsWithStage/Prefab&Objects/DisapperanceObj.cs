@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PrefabAITree : MonoBehaviour {
+public class DisapperanceObj : MonoBehaviour {
 	public int lifeTime;
 	
 	void Update () {
