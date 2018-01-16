@@ -72,10 +72,12 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 				
 			}else{
 				this.moves();
-				this.jump();
 				this.attack();
 				this.moveCheats();
 				this.raysActivity();
+				if(Input.GetKeyDown(KeyCode.Space)){
+					StartCoroutine(this.jump(9.0f));
+				}
 			}
 
 			if(this.damageDown > 0){
@@ -146,31 +148,26 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 	}
 
 	//ジャンプ
-	private void jump(){
-		if(Input.GetKeyDown(KeyCode.Space) && !this.isJump){
+	public IEnumerator jump(float leapLevel){
+		if(this.isJump || this.canJump){
+			yield break;
+		}else if(!this.isJump){
 			canJump = true;
 		}
 
 		//アニメーションとジャンプのタイミングをずらす
-		if(this.canJump){
-			++this.jumpLagtime;
-		}else{
-			this.jumpLagtime = 0;
-		}
+		yield return new WaitForSeconds(0.1f);
 
 		//アニメーション開始
-		if(this.jumpLagtime > 5){
-			animator.SetBool ("Jump", true);
-			animator.SetBool ("Dash", false);
-		}
+		animator.SetBool ("Jump", true);
+		animator.SetBool ("Dash", false);
+
+		yield return new WaitForSeconds(0.1f);
 
 		//ジャンプ開始
-		if(this.jumpLagtime > 7){
-			GetComponent<Rigidbody>().velocity = 
-				Vector3.up * 9.0F;
-			this.canJump = false;
-			this.isJump = true;
-		}
+		GetComponent<Rigidbody>().velocity = Vector3.up * leapLevel;
+		this.canJump = false;
+		this.isJump = true;
 	}
 
 	//ジャンプに関するレイ
@@ -264,7 +261,7 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 			case "EssencialKey":
 			this.keysIHave += 1;
 			this.equipmentItem = "EssencialKey";
-			this.itemIconScened("EssencialKey");
+			StartCoroutine(this.itemIconScened("EssencialKey"));
 			break;
 
 			case "HealPotion":
@@ -277,7 +274,9 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 	}
 
 	//アイテムのアイコンを表示させる
-	public void itemIconScened(string type){
+	public IEnumerator itemIconScened(string type){
+		yield return new WaitForSeconds(0.5f);
+
    		switch(type){
    			case "EssencialKey":
    			/*this.itemIcons[0].GetComponent<CanvasRenderer>()
@@ -293,6 +292,7 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
    			default:
    			break;
    		}
+   		yield break;
 	}
 
 	//持っているアイテムを取得する

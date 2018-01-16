@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using System;
 
 public class CapturingScreen : MonoBehaviour {
 	public string photoName;
@@ -19,6 +20,8 @@ public class CapturingScreen : MonoBehaviour {
 
 	void OnPostRender()
 	{
+		// DateTime theTime = DateTime.Now;
+		// photoName += theTime.ToString("G");
 		if(take)
     	{
 	    	var texture = new Texture2D(Screen.width, Screen.height);
@@ -27,8 +30,7 @@ public class CapturingScreen : MonoBehaviour {
 
 		    byte[] pngData = texture.EncodeToPNG();
 		    Destroy(texture);
-		    File.WriteAllBytes(Application.dataPath + 
-		    	"/ScreenShots/" + photoName, pngData);
+		    File.WriteAllBytes(Application.dataPath + "/UnityChanAction/ScreenShots/" + photoName, pngData);
 
 		    take = false;
 		}

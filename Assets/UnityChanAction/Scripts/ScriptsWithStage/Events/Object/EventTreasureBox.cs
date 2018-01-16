@@ -6,6 +6,7 @@ public class EventTreasureBox : MonoBehaviour {
 	public GameObject unityChan;
 	public GameObject contentItem;
 	public GameObject particle;
+	public float maxDistance;
 	protected bool playerInNear;
 	private Vector3 playerPos;
 	private Vector3 boxPos;
@@ -48,7 +49,7 @@ public class EventTreasureBox : MonoBehaviour {
 		float getDistance = Vector3.Distance
 			(transform.position, playerPos);
 
-		if(getDistance < 1.0F){
+		if(getDistance < this.maxDistance){
 
 			this.playerInNear = true;
 		}else{

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EventButtonHelper : MonoBehaviour {
 	public GameObject helper;
+	public GameObject boxItsParent;
 
 	void Start (){
 		this.helper.SetActive(false);
@@ -12,7 +13,13 @@ public class EventButtonHelper : MonoBehaviour {
 	void OnTriggerStay(Collider collider){
 		var obj = collider.gameObject;
 
-		if(obj.tag == "Player"){
+		if(this.boxItsParent != null){
+			if(!this.boxItsParent.GetComponent<EventTreasureBox>().getState()){
+				this.helper.SetActive(true);
+			}else{
+				this.helper.SetActive(false);
+			}
+		}else if(obj.tag == "Player"){
 			this.helper.SetActive(true);
 		}
 	}

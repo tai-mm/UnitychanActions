@@ -6,34 +6,14 @@ public class MoveGround : MonoBehaviour {
 	public Vector3 basePos;
 	public float limitedPos;
 	public float moveSpeed;
-	private bool isTurning = false;
 
 	void Start () {
 		this.basePos = transform.position;
 	}
 	
 	void Update () {
-		//常にx座標を記録しておく
-		float inX = transform.position.x;
-
-		//起点座標より、x軸が"limitedPos"分だけ離れているか
-		if(inX - this.basePos.x > this.limitedPos ||
-			inX - this.basePos.x < -this.limitedPos){
-
-			//リターン
-			if(this.isTurning){
-				this.isTurning = false;
-			}else{
-				this.isTurning = true;
-			}
-		}
-		if(this.isTurning){
-			transform.position += new Vector3
-				(-this.moveSpeed * Time.deltaTime, 0F, 0F);
-		}else{
-			transform.position += new Vector3
-				(this.moveSpeed * Time.deltaTime, 0F, 0F);
-		}
+		transform.position = 
+			this.basePos + new Vector3(Mathf.Sin(Time.time * this.moveSpeed), 0f, 0f);
 	}
 
 	void OnCollisionEnter(Collision collision){

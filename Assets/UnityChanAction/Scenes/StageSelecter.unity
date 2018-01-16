@@ -1595,6 +1595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helper: {fileID: 375147765}
+  boxItsParent: {fileID: 0}
 --- !u!1 &386808437
 GameObject:
   m_ObjectHideFlags: 0
@@ -4887,6 +4888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helper: {fileID: 440655655}
+  boxItsParent: {fileID: 0}
 --- !u!1 &1404253739
 GameObject:
   m_ObjectHideFlags: 0
@@ -6478,7 +6480,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 2}
@@ -7166,6 +7168,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 35c4c68e6559cc64b80e1c271fd0ef04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11644b8b7984ed64e80fb79401611b8b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35c4c68e6559cc64b80e1c271fd0ef04, type: 3}
   m_IsPrefabParent: 0
