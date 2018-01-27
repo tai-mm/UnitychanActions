@@ -34,10 +34,10 @@ public class EntityAICamera : MonoBehaviour {
 			default:
 				transform.position = 
 					unityChan.transform.position + 
-					new Vector3(0F, 4.0F, -5.0F);
+					new Vector3(0F, 4.0F, -7.0F);
 
 				transform.eulerAngles = 
-					new Vector3(27.0F, 0F, 0F);
+					new Vector3(24.0F, 0F, 0F);
 			break;
 
 			case 2:
@@ -92,13 +92,13 @@ public class EntityAICamera : MonoBehaviour {
 			//ズーム開始
 			for(int i = 0; i < 12; i++){
 				float f = (float)i;
-				transform.position = this.keepPos + 
-					new Vector3(0F, 0F - f / 20, 0F + f / 2);
+				transform.position = this.keepPos + new Vector3(0F, 0F - f / 20, 0F + f / 2);
 
 				yield return null;
 			}
 			this.cannotTouch = false;
 
+		//Zキーが押されるたびに、zoomNowとcannotTouchのtrueとfalseを切り替え。
 		}else if(this.zoomNow && !this.cannotTouch){
 			//カメラのズーム位置を代入
 			this.keepPos = transform.position;
@@ -106,20 +106,19 @@ public class EntityAICamera : MonoBehaviour {
 			//ズーム終了
 			for(int i = 0; i < 12; i++){
 				float f = (float)i;
-				transform.position = this.keepPos +
-					new Vector3(0F, 0F + f / 20, 0F - f / 2);
+				transform.position = this.keepPos + new Vector3(0F, 0F + f / 20, 0F - f / 2);
 
 				yield return null;
 			}
 
+			//ズームモードとプレイヤーのフリーズを解除。
 			this.zoomNow = false;
 			this.freezePlayer(false);
 		}
 	}
 
 	private void freezePlayer(bool not){
-		EntityAIUnityChanMoves cs = this.unityChan.
-			GetComponent<EntityAIUnityChanMoves>();
+		EntityAIUnityChanMoves cs = this.unityChan.GetComponent<EntityAIUnityChanMoves>();
 
 		if(cs != null){
 			cs.isFreezing = not;

@@ -3,16 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class EventScenes : MonoBehaviour {
-	public Animator sceneAto;
 	public Image image;
-	public GameObject ground;
 	public GameObject unityChan;
-	public int changeTo = 1;
-	public bool calledComing = false;//"comingFade"が既に呼ばれたか
-	public bool calledNext = false;//"goToNextRoom"が既に呼ばれたか
 	private EntityAIUnityChanMoves uniScript;
 	private float downInbisible = 0;
-	private float fadeTime = 0;
 
 	void Start () {
 		this.uniScript = this.unityChan.GetComponent<EntityAIUnityChanMoves> ();
