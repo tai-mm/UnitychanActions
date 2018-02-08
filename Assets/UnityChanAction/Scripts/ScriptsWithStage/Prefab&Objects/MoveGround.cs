@@ -15,7 +15,7 @@ public class MoveGround : MonoBehaviour {
 	void Update () {
 		if(this.isUpDown){
 			transform.position = this.basePos + new Vector3
-				(0f, Mathf.Sin(Time.time * this.moveSpeed) * this.limitedPos, 0f);
+				(0f, -3.0f + Mathf.PingPong(Time.time * this.moveSpeed, this.limitedPos), 0f);
 		}else{
 			transform.position = 
 				this.basePos + new Vector3(Mathf.Sin(Time.time * this.moveSpeed), 0f, 0f);

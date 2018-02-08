@@ -43,6 +43,7 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 	private float fallPos = 0;
 	private float fallDistance = 0;
 	private string equipmentItem = "null";
+	[SerializeField] Vector3 raysAt;
 
 	//ゲーム起動時
 	void Awake (){
@@ -113,8 +114,9 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 
 	//Unityちゃんの動き
 	private void moves(){
-		float distance = 0;
+		float distance = 10.0f;
 		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		 Debug.DrawRay (ray.origin, ray.direction * distance, Color.red, 3600f, false);
 
 		plane.SetNormalAndPosition (Vector3.up, transform.localPosition);
 		if (plane.Raycast (ray, out distance)) {
@@ -125,6 +127,7 @@ public class EntityAIUnityChanMoves : MonoBehaviour {
 
 			if(this.onGround){
 				transform.LookAt(lookPoint);
+				this.raysAt = lookPoint;
 			}
 		}
 
