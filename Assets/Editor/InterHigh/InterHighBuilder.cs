@@ -184,7 +184,7 @@ namespace UnityInterHigh
 		{
 			BuildPipeline.BuildPlayer(GetEnabledScenes(),
 				locationPath,
-				BuildTarget.StandaloneOSXUniversal,
+				BuildTarget.StandaloneOSX,
 				BuildOptions.None);
 			return this;
 		}
