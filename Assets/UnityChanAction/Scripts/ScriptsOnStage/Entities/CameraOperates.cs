@@ -1,26 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class CameraOperates : MonoBehaviour {
+	[SerializeField] Const.EnumCameraDir direction;
 	public GameObject unityChan;
 	public bool isFreezing = false;
-	public int direction = 1;
+	public int howLongToArrive;
+	protected bool readyToWork = true;
 	private Vector3 keepPos;
 	private bool zoomNow = false;
 	private bool cannotTouch = false;
-
-	void Start () {
-		this.direction = 1;
-	}
 	
 	void Update () {
 		if(!isFreezing){
-
-			//"zoomNow"がtrueなら、カメラ位置調整メソッドを停止。
-			if(!this.zoomNow){
-				this.chageDirection();
-
-			}
+			this.inputWorking();
 
 			if(Input.GetKeyDown(KeyCode.Z)){
 				StartCoroutine(zoomForward());
@@ -28,51 +22,67 @@ public class CameraOperates : MonoBehaviour {
 		}
 	}
 
-	//カメラの向きを変える 
-	protected void chageDirection(){
+	//キーボード操作によるカメラワーク
+	public void inputWorking(){
+		if(Input.GetKeyDown(KeyCode.UpArrow)){
+			this.direction = Const.EnumCameraDir.Usually;
+		}
+		if(Input.GetKeyDown(KeyCode.RightArrow)){
+			this.direction = Const.EnumCameraDir.Right;
+		}
+		if(Input.GetKeyDown(KeyCode.LeftArrow)){
+			this.direction = Const.EnumCameraDir.Left;
+		}
+		if(Input.GetKeyDown(KeyCode.DownArrow)){
+			this.direction = Const.EnumCameraDir.Opposition;
+		}
+		this.action(this.getCoordToMove(), Ease.InFlash);
+	}
+
+	//スクリプト操作によるカメラワーク
+	public void caughtWorking(Const.EnumCameraDir selectDir){
+		this.direction = selectDir;
+		this.action(this.getCoordToMove(), Ease.InFlash);
+	}
+
+	public void action(Vector3 coord, Ease easeType){
+		this.readyToWork = false;
+		transform.DOMove(coord, this.howLongToArrive)
+			/*.SetEase(easeType)*/.OnComplete(() => this.readyToWork = true);
+	}
+
+	//カメラが動く方向を取得
+	public Vector3 getCoordToMove(){
 		switch(this.direction){
 			default:
-				transform.position = 
-					unityChan.transform.position + 
-					new Vector3(0F, 4.0F, -7.0F);
+				return new Vector3(0.0f, 4.0f, -7.0f);
 
-				transform.eulerAngles = 
-					new Vector3(24.0F, 0F, 0F);
-			break;
+			case Right:
+				return new Vector3(-5.0f, 4.0f, 0f);
 
-			case 2:
-				transform.position = 
-					unityChan.transform.position + 
-					new Vector3(-5.0F, 4.0F, 0F);
+			case Left:
+				return new Vector3(5.0f, 4.0f, 0f);
 
-				transform.eulerAngles = 
-					new Vector3(27.0F, 90F, 0F);
-			break;
-
-			case 3:
-				transform.position = 
-					unityChan.transform.position + 
-					new Vector3(5.0F, 4.0F, 0F);
-
-				transform.eulerAngles = 
-					new Vector3(27.0F, 270F, 0F);
-			break;
-
-			case 4:
-				transform.position = 
-					unityChan.transform.position + 
-					new Vector3(0F, 4.0F, 5.0F);
-
-				transform.eulerAngles = 
-					new Vector3(27.0F, 180F, 0F);
-			break;
+			case Opposition:
+				return new Vector3(0f, 4.0f, 5.0f);
 		}
+	}
 
-		/*ゲーム初期位置を正面に、
-			Direction:1 = 初期
-			Direction:2 = 右90°
-			Direction:3 = 左90°
-			Direction:4 = 反転*/
+	//カメラアングルを取得
+	public Vector3 getAngle(){
+		switch(this.direction){
+			default:
+				return new Vector3(24.0f, 0f, 0f);
+
+			case Right:
+				return new Vector3(27.0f, 90f, 0f);
+
+			case Left:
+				return new Vector3(27.0f, 270f, 0f);
+
+			case Opposition:
+				return new Vector3(27.0f, 180f, 0f);
+		}
 	}
 
 	//カメラを正面にズームイン

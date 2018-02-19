@@ -7252,7 +7252,7 @@ GameObject:
   m_Layer: 0
   m_Name: Grounds-13
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10090,7 +10090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 0
-  maxSpawnRange: 300
+  maxSpawnRange: 0
   prefab: {fileID: 1417571601279738, guid: 2932c6da0c5f4c74e9c669d4c6292e88, type: 2}
   whereFor: {x: 0, y: 0, z: -3}
   couldSpawn: 1
@@ -13954,7 +13954,6 @@ GameObject:
   - component: {fileID: 1666326903}
   - component: {fileID: 1666326904}
   - component: {fileID: 1666326905}
-  - component: {fileID: 1666326906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14066,23 +14065,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photoName: 2018-01-18.png
---- !u!95 &1666326906
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1666326897}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e704814ef7c357243a8349e27fd9d584, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1666667613
 GameObject:
   m_ObjectHideFlags: 0
@@ -14605,7 +14587,8 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1732875156 stripped
@@ -17162,8 +17145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86b10c97d90ab419cde5bebf49e461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniSc1: {fileID: 2111468087}
-  camera: {fileID: 1666326897}
 --- !u!114 &2111468086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17175,12 +17156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e7d8fc7320c764c8c6280ca927d677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAnim: {fileID: 1220571706}
-  playerSays: {fileID: 1220571703}
-  prefab_ItemEff: {fileID: 1469678800209744, guid: 27484bc5c20ea67489e146b5046caf1d,
-    type: 2}
-  parentOfEffect: {fileID: 1850000712}
-  canUseAllowCheats: 0
 --- !u!114 &2111468087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17203,9 +17178,8 @@ MonoBehaviour:
   - {fileID: 0}
   keyText: {fileID: 286540867}
   prefab_footPR: {fileID: 0}
-  isIn: Outside
   damageDown: 0
-  canUseAllowCheats: 0
+  canUseAllowCheats: 1
   isFreezing: 0
   raysAt: {x: 0, y: 0, z: 0}
 --- !u!136 &2111468088

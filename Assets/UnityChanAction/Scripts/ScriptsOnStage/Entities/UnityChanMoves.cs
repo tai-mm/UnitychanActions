@@ -357,6 +357,7 @@ public class UnityChanMoves : MonoBehaviour {
 
 	//チートコマンドの管理
 	private void moveCheats(){
+		//無敵状態になる
 		if(this.canUseAllowCheats){
 			if(Input.GetKeyUp(KeyCode.I) && !this.isInvisiblity){
 				this.isInvisiblity = true;
