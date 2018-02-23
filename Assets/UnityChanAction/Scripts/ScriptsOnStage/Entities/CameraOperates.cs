@@ -11,10 +11,19 @@ public class CameraOperates : MonoBehaviour {
 	private Vector3 keepPos;
 	private bool zoomNow = false;
 	private bool cannotTouch = false;
+
+	void Awake () {
+		this.direction = Const.EnumCameraDir.Usually;
+		this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
+	}
 	
 	void Update () {
 		if(!isFreezing){
-			this.inputWorking();
+
+			if(this.readyToWork){
+				this.inputWorking();
+				this.followMove();
+			}
 
 			if(Input.GetKeyDown(KeyCode.Z)){
 				StartCoroutine(zoomForward());
@@ -26,45 +35,57 @@ public class CameraOperates : MonoBehaviour {
 	public void inputWorking(){
 		if(Input.GetKeyDown(KeyCode.UpArrow)){
 			this.direction = Const.EnumCameraDir.Usually;
+			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
 		}
 		if(Input.GetKeyDown(KeyCode.RightArrow)){
 			this.direction = Const.EnumCameraDir.Right;
+			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
 		}
 		if(Input.GetKeyDown(KeyCode.LeftArrow)){
 			this.direction = Const.EnumCameraDir.Left;
+			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
 		}
 		if(Input.GetKeyDown(KeyCode.DownArrow)){
 			this.direction = Const.EnumCameraDir.Opposition;
+			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
 		}
-		this.action(this.getCoordToMove(), Ease.InFlash);
 	}
 
 	//スクリプト操作によるカメラワーク
 	public void caughtWorking(Const.EnumCameraDir selectDir){
 		this.direction = selectDir;
-		this.action(this.getCoordToMove(), Ease.InFlash);
+		this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
 	}
 
-	public void action(Vector3 coord, Ease easeType){
+	public void followMove(){
+		transform.position = this.getCoordToMove();
+	}
+
+	public void tweenAction(Vector3 coord, Vector3 rotate, Ease easeType){
 		this.readyToWork = false;
 		transform.DOMove(coord, this.howLongToArrive)
 			/*.SetEase(easeType)*/.OnComplete(() => this.readyToWork = true);
+		transform.DORotate(rotate, this.howLongToArrive);
 	}
 
 	//カメラが動く方向を取得
 	public Vector3 getCoordToMove(){
 		switch(this.direction){
 			default:
-				return new Vector3(0.0f, 4.0f, -7.0f);
+				return this.unityChan.transform.position 
+					+ new Vector3(0.0f, 5.0f, -8.0f);
 
-			case Right:
-				return new Vector3(-5.0f, 4.0f, 0f);
+			case Const.EnumCameraDir.Right:
+				return this.unityChan.transform.position 
+					+ new Vector3(5.0f, 4.0f, 0f);
 
-			case Left:
-				return new Vector3(5.0f, 4.0f, 0f);
+			case Const.EnumCameraDir.Left:
+				return this.unityChan.transform.position 
+					+ new Vector3(-5.0f, 4.0f, 0f);
 
-			case Opposition:
-				return new Vector3(0f, 4.0f, 5.0f);
+			case Const.EnumCameraDir.Opposition:
+				return this.unityChan.transform.position 
+					+ new Vector3(0f, 5.0f, 8.0f);
 		}
 	}
 
@@ -72,16 +93,16 @@ public class CameraOperates : MonoBehaviour {
 	public Vector3 getAngle(){
 		switch(this.direction){
 			default:
-				return new Vector3(24.0f, 0f, 0f);
+				return new Vector3(25.0f, 0f, 0f);
 
-			case Right:
-				return new Vector3(27.0f, 90f, 0f);
-
-			case Left:
+			case Const.EnumCameraDir.Right:
 				return new Vector3(27.0f, 270f, 0f);
 
-			case Opposition:
-				return new Vector3(27.0f, 180f, 0f);
+			case Const.EnumCameraDir.Left:
+				return new Vector3(27.0f, 90f, 0f);
+
+			case Const.EnumCameraDir.Opposition:
+				return new Vector3(25.0f, 180f, 0f);
 		}
 	}
 
