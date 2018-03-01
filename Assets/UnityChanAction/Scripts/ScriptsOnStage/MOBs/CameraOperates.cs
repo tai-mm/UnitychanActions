@@ -14,15 +14,16 @@ public class CameraOperates : MonoBehaviour {
 
 	void Awake () {
 		this.direction = Const.EnumCameraDir.Usually;
-		this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
+		this.tweenActionMove(this.getCoordToMove(), Ease.InFlash);
+			this.tweenActionRotate(this.getAngle(), Ease.InFlash);
 	}
 	
 	void Update () {
 		if(!isFreezing){
 
 			if(this.readyToWork){
-				this.inputWorking();
 				this.followMove();
+				this.inputWorking();
 			}
 
 			if(Input.GetKeyDown(KeyCode.Z)){
@@ -35,36 +36,44 @@ public class CameraOperates : MonoBehaviour {
 	public void inputWorking(){
 		if(Input.GetKeyDown(KeyCode.UpArrow)){
 			this.direction = Const.EnumCameraDir.Usually;
-			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
+			this.tweenActionMove(this.getCoordToMove(), Ease.InFlash);
+			this.tweenActionRotate(this.getAngle(), Ease.InFlash);
 		}
 		if(Input.GetKeyDown(KeyCode.RightArrow)){
 			this.direction = Const.EnumCameraDir.Right;
-			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
+			this.tweenActionMove(this.getCoordToMove(), Ease.InFlash);
+			this.tweenActionRotate(this.getAngle(), Ease.InFlash);
 		}
 		if(Input.GetKeyDown(KeyCode.LeftArrow)){
 			this.direction = Const.EnumCameraDir.Left;
-			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
+			this.tweenActionMove(this.getCoordToMove(), Ease.InFlash);
+			this.tweenActionRotate(this.getAngle(), Ease.InFlash);
 		}
 		if(Input.GetKeyDown(KeyCode.DownArrow)){
 			this.direction = Const.EnumCameraDir.Opposition;
-			this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
+			this.tweenActionMove(this.getCoordToMove(), Ease.InFlash);
+			this.tweenActionRotate(this.getAngle(), Ease.InFlash);
 		}
 	}
 
 	//スクリプト操作によるカメラワーク
 	public void caughtWorking(Const.EnumCameraDir selectDir){
 		this.direction = selectDir;
-		this.tweenAction(this.getCoordToMove(), this.getAngle(), Ease.InFlash);
+		this.tweenActionMove(this.getCoordToMove(), Ease.InFlash);
+		this.tweenActionRotate(this.getAngle(), Ease.InFlash);
 	}
 
 	public void followMove(){
 		transform.position = this.getCoordToMove();
 	}
 
-	public void tweenAction(Vector3 coord, Vector3 rotate, Ease easeType){
+	public void tweenActionMove(Vector3 coord, Ease easeType){
 		this.readyToWork = false;
 		transform.DOMove(coord, this.howLongToArrive)
-			/*.SetEase(easeType)*/.OnComplete(() => this.readyToWork = true);
+		/*.SetEase(easeType)*/.OnComplete(() => this.readyToWork = true);
+	}
+
+	public void tweenActionRotate(Vector3 rotate, Ease easeType){
 		transform.DORotate(rotate, this.howLongToArrive);
 	}
 

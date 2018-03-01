@@ -145,8 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!23 &7877527
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -769,8 +767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1516428751}
-  forward: 1
 --- !u!1001 &211644251
 Prefab:
   m_ObjectHideFlags: 0
@@ -1955,8 +1951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1516428751}
-  forward: 1
 --- !u!23 &395493273
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2175,8 +2169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!1 &430292230
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,8 +2485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!4 &467844999 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400016, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
@@ -2818,8 +2808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!1 &548893586
 GameObject:
   m_ObjectHideFlags: 0
@@ -11495,8 +11483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!1001 &818622966
 Prefab:
   m_ObjectHideFlags: 0
@@ -11746,8 +11732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1516428751}
-  forward: 1
 --- !u!23 &872120708
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16125,7 +16109,7 @@ TextMesh:
   m_FontSize: 20
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 8e4363ee0a253f8468087c612496caa3, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -16143,7 +16127,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8e4363ee0a253f8468087c612496caa3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16219,8 +16203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 4
 --- !u!23 &981626706
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17061,7 +17043,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 391032539
+  randomSeed: -1220579944
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20669,8 +20651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1516428751}
-  forward: 1
 --- !u!23 &1132552703
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24649,8 +24629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!23 &1317971491
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29146,9 +29124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ba3c61bb3941245b3be3b06326e0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 1
   unityChan: {fileID: 2000745530}
   isFreezing: 0
-  direction: 1
+  howLongToArrive: 0
 --- !u!114 &1516428758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30241,8 +30220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!23 &1727900513
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31206,8 +31183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1516428751}
-  forward: 1
 --- !u!23 &1880642523
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31744,7 +31719,6 @@ MonoBehaviour:
   - {fileID: 0}
   keyText: {fileID: 1447914715}
   prefab_footPR: {fileID: 0}
-  isIn: Outside
   damageDown: 0
   canUseAllowCheats: 0
   isFreezing: 0
@@ -31765,11 +31739,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e7d8fc7320c764c8c6280ca927d677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAnim: {fileID: 251495251}
+  textAnim: {fileID: 0}
   playerSays: {fileID: 251495247}
-  prefab_ItemEff: {fileID: 1469678800209744, guid: 27484bc5c20ea67489e146b5046caf1d,
-    type: 2}
-  parentOfEffect: {fileID: 520522195}
+  prefab_ItemEff: {fileID: 0}
+  parentOfEffect: {fileID: 0}
   canUseAllowCheats: 0
 --- !u!65 &2000745534
 BoxCollider:
@@ -31822,7 +31795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86b10c97d90ab419cde5bebf49e461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniSc1: {fileID: 2000745531}
+  uniSc1: {fileID: 0}
   camera: {fileID: 1516428751}
 --- !u!1001 &2004967172
 Prefab:
@@ -32049,8 +32022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 4
 --- !u!23 &2017841728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36045,8 +36016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba180b9fb5d5b6f458b8dd6fdb69e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  forward: 1
 --- !u!23 &2087024147
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class AnimEventVias : MonoBehaviour {
 
 	public bool caPlayerText(){
 		if(this.player != null){
-			this.player.GetComponent<UnityChanUIs>().cancelAnimation();
+			this.player.GetComponent<UnityChanUI>().cancelAnimation();
 			return true;
 
 		}else{
