@@ -13,6 +13,7 @@ TagManager:
   - DirtyGround
   - OutOfTheWorld
   - Stage
+  - EventObject
   layers:
   - Default
   - TransparentFX
