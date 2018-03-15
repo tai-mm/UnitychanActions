@@ -11,6 +11,7 @@ public class UnityChanUI : MonoBehaviour {
 	public GameObject parentOfEffect;
 	public bool canUseAllowCheats = false;
 	private Text sayThat;
+	private Text iconText;
 
 	void Start () {
 		this.setEnabledToIcon(false);
@@ -26,8 +27,13 @@ public class UnityChanUI : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider){
-		if(collider.gameObject.tag == "EventObject"){
-			this.setEnabledToIcon(true);
+		var colObj = collider.gameObject;//まず、イベントを持つオブジェクトかどうかをタグで判定
+		if(colObj.gameObject.tag == "EventObject"){
+
+			var tresureObj = colObj.GetComponentInChildren<EventTreasureBox>();
+			if(tresureObj != null && !tresureObj.getState()){//宝箱の場合
+				this.setEnabledToIcon(true);
+			}
 		}
 	}
 
@@ -57,6 +63,6 @@ public class UnityChanUI : MonoBehaviour {
 
 	private void setEnabledToIcon(bool which){
 		this.playerIcon.enabled = which;
-		//this.playerIcon.FindChild("Text").gameObject.enabled = which;
+		this.playerIcon.GetComponentInChildren<Text>().enabled = which;
 	}
 }

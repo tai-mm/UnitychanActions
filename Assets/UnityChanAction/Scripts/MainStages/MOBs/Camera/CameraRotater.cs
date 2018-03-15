@@ -4,9 +4,9 @@ using DG.Tweening;
 
 public class CameraRotater : MonoBehaviour {
 	public GameObject player;
-	public bool isFreezing = false;
-	public int howLongToArrive;
-	protected bool readyToWork = true;
+	public bool isFreezing = false;//プレイヤーがフリーズ状態であるか
+	public int howLongToArrive;//移動先までの到達時間
+	protected bool readyToWork = true;//カメラワークの準備ができているか
 
 	void Awake () {
 		CameraManager.Instance.nowDir = Const.EnumCameraDir.Usually;
@@ -55,17 +55,22 @@ public class CameraRotater : MonoBehaviour {
 		this.tweenActionRotate(this.getAngle(selectDir), Ease.InFlash);
 	}
 
+	//普段は、カメラはプレイヤーに追従する
 	public void followMove(){
 		transform.position = this.getCoordToMove(CameraManager.Instance.nowDir);
 	}
 
+	//DoTweenによるカメラワーク（動き）
 	public void tweenActionMove(Vector3 coord, Ease easeType){
+		this.freezePlayer(true);
 		this.readyToWork = false;
 		transform.DOMove(coord, this.howLongToArrive)
 			//.SetEase(easeType)
-			.OnComplete(() => this.readyToWork = true);
+			.OnComplete(() => {this.readyToWork = true; this.freezePlayer(false);});
+			//.OnComplete(() => this.freezePlayer(false));
 	}
 
+	//DoTweenによるカメラワーク（回転）
 	public void tweenActionRotate(Vector3 rotate, Ease easeType){
 		transform.DORotate(rotate, this.howLongToArrive);
 	}
@@ -79,11 +84,11 @@ public class CameraRotater : MonoBehaviour {
 
 			case Const.EnumCameraDir.Right:
 				return this.player.transform.position 
-					+ new Vector3(5.0f, 4.0f, 0f);
+					+ new Vector3(8.0f, 5.0f, 0f);
 
 			case Const.EnumCameraDir.Left:
 				return this.player.transform.position 
-					+ new Vector3(-5.0f, 4.0f, 0f);
+					+ new Vector3(-8.0f, 5.0f, 0f);
 
 			case Const.EnumCameraDir.Opposition:
 				return this.player.transform.position 
@@ -95,7 +100,7 @@ public class CameraRotater : MonoBehaviour {
 	private Vector3 getAngle(Const.EnumCameraDir dir){
 		switch(dir){
 			default:
-				return new Vector3(25.0f, 0f, 0f);
+				return new Vector3(27.0f, 0f, 0f);
 
 			case Const.EnumCameraDir.Right:
 				return new Vector3(27.0f, 270f, 0f);
@@ -104,10 +109,11 @@ public class CameraRotater : MonoBehaviour {
 				return new Vector3(27.0f, 90f, 0f);
 
 			case Const.EnumCameraDir.Opposition:
-				return new Vector3(25.0f, 180f, 0f);
+				return new Vector3(27.0f, 180f, 0f);
 		}
 	}
 
+	//プレイヤーをフリーズまたはフリーズ解除させる（notの値）
 	private void freezePlayer(bool not){
 		var plaCsMain = this.player.GetComponent<UnityChanStatus>();
 

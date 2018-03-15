@@ -219,7 +219,6 @@ public class UnityChanMoves : MonoBehaviour {
 
 	//アイテムを定義する
 	public void setEquipment(string weaponType){
-		print(weaponType);
 		switch(weaponType){
 
 			case "EssencialKey":
