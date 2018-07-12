@@ -4,6 +4,6 @@
 		Usually,
 		Right,
 		Left,
-		Opposition,
+		Opposition
 	}
 }
